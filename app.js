@@ -6,6 +6,7 @@ const methodOverride = require("method-override");
 const Listing =  require("./models/listing.js");
 const ejsMate = require("ejs-mate");
 const wrapAsync = require("./utils/wrapAsync.js");
+const expressError = require("./utils/expressError.js");
 
 const port = 8080;
 
@@ -55,7 +56,7 @@ app.get("/listings/:id", async (req, res) => {
 });
 
 // Create Route
-app.post("/listings", async (req, res) => {
+app.post("/listings", wrapAsync(async (req, res) => {
   let {title, description, price, location, country} = req.body;
   newListing = new Listing({
     title: title,
@@ -66,7 +67,7 @@ app.post("/listings", async (req, res) => {
   });
   await newListing.save();
   res.redirect("/listings");
-});
+}));
 
 // Edit Route
 app.get("/listings/:id/edit", async (req, res) => {
@@ -95,14 +96,24 @@ app.delete("/listings/:id", async (req, res) => {
   let deletedListing = await Listing.findByIdAndDelete(id);
   console.log(deletedListing);
   res.redirect("/listings");
-})
+});
 
 
 // Home Route
 app.get("/", (req, res) => {
   res.send("This is Home Route")
-})
+});
 
+
+app.use((req, res, next) => {
+  next(new expressError(404, "Page Not Found"));
+});
+
+
+app.use((err, req, res, next) => {
+  let {statusCode=500, message="Something Went Wrong."} = err;
+  res.status(statusCode).send(message);
+});
 
 app.listen(port, () => {
   console.log(`You are listening to port ${port}...`);
