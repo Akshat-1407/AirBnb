@@ -5,6 +5,10 @@ body {
   min-height: 100vh;
 }
 
+.container {
+  flex: 1;
+}
+
 /* Navbar */
 
 .navbar {
@@ -82,7 +86,8 @@ body {
 /* All listings (Index.ejs) */
 
 .listing-img {
-  height: 12rem;
+  height: 18rem;
+  width: 20rem;
   border-radius: 1rem;
 }
 

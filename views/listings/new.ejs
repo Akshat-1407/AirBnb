@@ -4,7 +4,7 @@
   <div class="row offset-2">
     <h3 class="new-listing-heading mt-3">Create a New Listing</h3>
 
-    <form method="POST" action="/listings">
+    <form method="POST" action="/listings" class="needs-validation" novalidate>
       <div class="col-8">
         <div class="mb-3">
           <label for="title" class="form-label">Title</label>
@@ -13,7 +13,10 @@
             name="title"
             class="form-control"
             placeholder="Title"
+            required
           />
+          <div class="valid-feedback"> Looks good! </div>
+          <div class="invalid-feedback"> Please Enter a Valid Title </div>
         </div>
 
         <div class="mb-3">
@@ -22,14 +25,17 @@
             name="description"
             class="form-control"
             placeholder="Enter description"
+            required
           ></textarea>
+          <div class="valid-feedback"> Looks good! </div>
+          <div class="invalid-feedback"> Please Enter a Valid Description </div>
         </div>
 
         <div class="mb-3">
-          <label for="image-link" class="form-label">Image Link</label>
+          <label for="image" class="form-label">Image Link</label>
           <input
             type="text"
-            name="image-link"
+            name="image"
             class="form-control"
             placeholder="Enter the Image URL/Link"
           />
@@ -43,7 +49,10 @@
               name="price"
               class="form-control"
               placeholder="Price"
+              required
             />
+            <div class="valid-feedback"> Looks good! </div>
+            <div class="invalid-feedback"> Please Enter a Valid Price </div>
           </div>
 
           <div class="mb-3 col-md-8">
@@ -53,7 +62,10 @@
               name="location"
               class="form-control"
               placeholder="Location"
+              required
             />
+            <div class="valid-feedback"> Looks good! </div>
+            <div class="invalid-feedback"> Please Enter a Valid Location </div>
           </div>
         </div>
 
@@ -64,12 +76,14 @@
             name="country"
             class="form-control"
             placeholder="Country"
+            required
           />
+          <div class="valid-feedback"> Looks good! </div>
+          <div class="invalid-feedback"> Please Enter a Valid Country </div>
         </div>
       </div>
 
       <button class="btn btn-danger new-btn">Add</button>
-      <br /><br />
     </form>
   </div>
 </body>
