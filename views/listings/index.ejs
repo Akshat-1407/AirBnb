@@ -1,0 +1,180 @@
+<% layout('/layouts/boilerplate.ejs') -%>
+
+  <body>
+
+    <!-- Collapsible filter toggle button (visible <900px) -->
+    <button class="btn btn-outline-secondary filter-collapse-toggle ms-auto" type="button" data-bs-toggle="collapse"
+      data-bs-target="#filterCollapseMenu" aria-expanded="false" aria-controls="filterCollapseMenu">
+      <i class="fa-solid fa-sliders"></i> Filters
+    </button>
+
+    <!-- Collapsible filter content (visible <900px) -->
+    <div class="collapse filter-collapse-content ms-3 mb-3" id="filterCollapseMenu">
+      <div class="d-flex flex-wrap gap-2">
+        <div class="filter-options">
+          <div><i class="fa-solid fa-fire"></i></div>
+          <p>Trending</p>
+        </div>
+        <div class="filter-options">
+          <div><i class="fa-solid fa-bed"></i></div>
+          <p>Rooms</p>
+        </div>
+        <div class="filter-options">
+          <div><i class="fa-solid fa-mountain-city"></i></div>
+          <p>Iconic Citis</p>
+        </div>
+        <div class="filter-options">
+          <div><i class="fa-solid fa-mountain"></i></div>
+          <p>Mountains</p>
+        </div>
+        <div class="filter-options">
+          <div><i class="fa-solid fa-chess-rook"></i></div>
+          <p>Castles</p>
+        </div>
+        <div class="filter-options">
+          <div><i class="fa-solid fa-person-swimming"></i></div>
+          <p>Swimming</p>
+        </div>
+        <div class="filter-options">
+          <div><i class="fa-solid fa-campground"></i></div>
+          <p>Camping</p>
+        </div>
+        <div class="filter-options">
+          <div><i class="fa-solid fa-cow"></i></div>
+          <p>Farma</p>
+        </div>
+        <div class="filter-options">
+          <div><i class="fa-solid fa-ship"></i></div>
+          <p>Boats</p>
+        </div>
+        <div class="filter-options">
+          <div><i class="fa-solid fa-snowflake"></i></div>
+          <p>Artic</p>
+        </div>
+        <div class="filter-options">
+          <div><i class="fa-solid fa-landmark-dome"></i></div>
+          <p>Domes</p>
+        </div>
+        <!-- Tax switch inside collapsible -->
+        <div class="form-check-reverse form-switch tax-switch ms-2">
+          <label class="switch-label">
+            <input class="form-check-input" type="checkbox" role="switch" id="switchCheckDefaultCollapse">
+            <span class="switch-slider"></span>
+            <span class="switch-text">Display total after taxes</span>
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <!-- Normal filter bar (hidden <900px) -->
+    <div class="filter ms-3">
+      <div class="filter-options">
+        <div><i class="fa-solid fa-fire"></i></div>
+        <p>Trending</p>
+      </div>
+      <div class="filter-options">
+        <div><i class="fa-solid fa-bed"></i></div>
+        <p>Rooms</p>
+      </div>
+      <div class="filter-options">
+        <div><i class="fa-solid fa-mountain-city"></i></div>
+        <p>Iconic Citis</p>
+      </div>
+      <div class="filter-options">
+        <div><i class="fa-solid fa-mountain"></i></div>
+        <p>Mountains</p>
+      </div>
+      <div class="filter-options">
+        <div><i class="fa-solid fa-chess-rook"></i></div>
+        <p>Castles</p>
+      </div>
+      <div class="filter-options">
+        <div><i class="fa-solid fa-person-swimming"></i></div>
+        <p>Swimming</p>
+      </div>
+      <div class="filter-options">
+        <div><i class="fa-solid fa-campground"></i></div>
+        <p>Camping</p>
+      </div>
+      <div class="filter-options">
+        <div><i class="fa-solid fa-cow"></i></div>
+        <p>Farma</p>
+      </div>
+      <div class="filter-options">
+        <div><i class="fa-solid fa-ship"></i></div>
+        <p>Boats</p>
+      </div>
+      <div class="filter-options">
+        <div><i class="fa-solid fa-snowflake"></i></div>
+        <p>Artic</p>
+      </div>
+      <div class="filter-options">
+        <div><i class="fa-solid fa-landmark-dome"></i></div>
+        <p>Domes</p>
+      </div>
+      <div class="form-check-reverse form-switch tax-switch">
+        <label class="switch-label">
+          <input class="form-check-input" type="checkbox" role="switch" id="switchCheckDefault">
+          <span class="switch-slider"></span>
+          <span class="switch-text">Display total after taxes</span>
+        </label>
+      </div>
+    </div>
+
+
+    <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-2 row-cols-xs-1 ms-2">
+      <% for(let listing of allListings) { %>
+        <a class="listing-link" href="/listings/<%= listing._id %>">
+          <div class="card listing-card col mb-4">
+            <img src="<%= listing.image %>" class="card-img-top listing-img" alt="listing_image" />
+            <div class="card-img-overlay"></div>
+            <div class="card-body">
+              <h6 class="card-title"><b>
+                  <%= listing.title %>
+                </b></h6>
+              <p class="card-text">
+                &#8377; <%= listing.price.toLocaleString("en-IN") %> / night <i class="gst-tax">&nbsp; &nbsp; + 18% GST </i>
+              </p>
+            </div>
+          </div>
+        </a>
+        <% } %>
+    </div>
+    <br /><br /><br />
+  </body>
+
+
+
+<script>
+  // Get both tax switches
+  const taxSwitches = [
+    document.getElementById('switchCheckDefault'),
+    document.getElementById('switchCheckDefaultCollapse')
+  ];
+
+  // Get all GST tax elements
+  const gstTaxes = document.querySelectorAll('.gst-tax');
+
+  // Function to toggle GST display
+  function toggleGST(show) {
+    gstTaxes.forEach(el => {
+      el.style.display = show ? 'inline' : 'none';
+    });
+  }
+
+  // Listen for changes on both switches
+  taxSwitches.forEach(sw => {
+    if (sw) {
+      sw.addEventListener('change', function() {
+        // Sync both switches
+        taxSwitches.forEach(other => {
+          if (other && other !== sw) other.checked = sw.checked;
+        });
+        toggleGST(sw.checked);
+      });
+    }
+  });
+
+  // On page load, ensure GST is hidden
+  toggleGST(false);
+</script>

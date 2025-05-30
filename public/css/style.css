@@ -1,0 +1,320 @@
+body {
+  font-family: "Plus Jakarta Sans", sans-serif;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+.container {
+  flex: 1;
+}
+
+/* Navbar */
+
+.navbar {
+  height: 4rem;
+  background-color: white;
+}
+
+.fa-compass {
+  font-size: 2rem;
+  color: #fe424d;
+}
+
+.nav-link {
+  color: #444444 !important;
+  background-color: white;
+}
+
+.nav-link:hover {
+  color: black !important;
+}
+
+.box {
+  margin-left: 2rem;
+  margin-right: 2rem;
+  flex: 1;
+}
+
+.search-btn {
+  border-radius: 1rem;
+}
+.search-bar {
+  border-radius: 1rem;
+  width: 15rem;
+  padding: 0 1rem 0 3rem;
+}
+
+/* Footer */
+
+.footer {
+  background-color: #ebebeb;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 8rem;
+  flex-wrap: wrap;
+}
+
+.f-icon-socal,
+.f-company,
+.f-links {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 2.66rem;
+}
+
+.f-icon-socal i {
+  opacity: 0.7;
+  margin-right: 1rem;
+  font-size: 1rem;
+}
+
+.f-icon-socal i:hover {
+  opacity: 0.9;
+  font-size: 1.05rem;
+}
+
+.f-links a {
+  text-decoration: none;
+  color: black;
+  margin-right: 0.7rem;
+}
+
+.f-links :hover {
+  text-decoration: underline;
+}
+
+.brand-name {
+  text-align: center;
+  margin-bottom: 0;
+}
+
+/* All listings (Index.ejs) */
+
+.listing-img {
+  height: 20rem;
+  width: 20rem;
+  border-radius: 1rem;
+}
+
+.listing-card {
+  border: none;
+}
+
+.card-img-top {
+  border: none;
+  width: 100%;
+  object-fit: cover;
+
+}
+
+.listing-link {
+  text-decoration: none;
+}
+
+.card-body {
+  padding: 0;
+}
+
+.card-title {
+  margin: 0;
+  margin-top: 0.5rem;
+}
+
+.card-img-overlay {
+  opacity: 0 ;
+}
+
+.card-img-overlay:hover {
+  opacity: 0.15;
+  background-color: white;
+}
+
+
+/* Filter Index Page */
+
+.filter {
+  display: flex;
+  padding: 1.5rem 0 1.5rem 0;
+  
+}
+.filter-options {
+  margin-right: 2rem;
+  text-align: center;
+  opacity: 0.7;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.filter-options:hover {
+  opacity: 1;
+}
+
+
+/* Tax Switch Index Page */
+
+.tax-switch {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 1rem;
+  border: 1px solid #e0e0e0;
+  background: #fafbfc;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  width: 19rem;
+  height: 3rem;
+  margin-left: 4rem;
+  border-radius: 2rem;
+  font-size: 1rem;
+  transition: box-shadow 0.2s;
+}
+.tax-switch:hover {
+  box-shadow: 0 4px 16px rgba(0,0,0,0.10);
+  border-color: #bdbdbd;
+}
+/* Hide default checkbox */
+.tax-switch .form-check-input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+  position: absolute;
+}
+/* Custom switch */
+.switch-label {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  cursor: pointer;
+  margin: 0;
+  position: relative;
+  height: 100%;
+}
+.switch-slider {
+  position: relative;
+  display: inline-block;
+  width: 48px;
+  height: 26px;
+  background: #e0e0e0;
+  border-radius: 26px;
+  transition: background 0.3s;
+  vertical-align: middle;
+  margin-right: 0.75rem;
+  cursor: pointer;
+  margin-left: 1rem;
+}
+.switch-slider::before {
+  content: "";
+  position: absolute;
+  left: 3px;
+  top: 3px;
+  width: 20px;
+  height: 20px;
+  background: #fff;
+  border-radius: 50%;
+  transition: transform 0.3s;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.12);
+}
+.tax-switch .form-check-input:checked + .switch-slider {
+  background: #4f8cff;
+}
+.tax-switch .form-check-input:checked + .switch-slider::before {
+  transform: translateX(22px);
+}
+.tax-switch .switch-text {
+  flex: 1;
+  font-weight: 500;
+  color: #333;
+  margin-bottom: 0;
+  cursor: pointer;
+  user-select: none;
+}
+
+/* Hide tax switch below 1400px */
+@media (max-width: 1399px) {
+  .tax-switch {
+    display: none !important;
+  }
+}
+
+/* Hide normal filter bar and show collapsible below 900px */
+@media (max-width: 899px) {
+  .filter {
+    display: none !important;
+  }
+
+  .filter-collapse-toggle {
+    display: block !important;
+    margin: 1rem;
+  }
+}
+
+/* By default, hide collapsible filter toggle button */
+.filter-collapse-toggle {
+  display: none;
+}
+
+
+/* Gst tax switch */
+
+.gst-tax {
+  display: none;
+}
+
+
+/* New listing */
+
+.new-listing-heading {
+  color: #fe424d;
+}
+
+.new-btn {
+  width: 6rem;
+  background-color: #fe424d;
+  border: none;
+  
+}
+
+.new-btn:hover {
+  width: 6rem;
+  background-color: rgb(226, 66, 66); 
+}
+
+/* Edit Listing */
+
+.edit-listing-heading {
+  color: #fe424d;
+}
+
+.edit-btn {
+  width: 6rem;
+  background-color: #fe424d;
+  border: none;
+  height: 2.25rem;
+  margin-top: 0.75rem;
+}
+
+.edit-btn:hover {
+  background-color: rgb(226, 66, 66); 
+}
+
+/* Show Listing */
+
+.show-img {
+  border-radius: 0.75rem;
+  height: 40vh;
+}
+
+.btns {
+  padding: 0;
+  margin-bottom: 6rem !important;
+}
+
+.delete-btn {
+  width: 6rem;
+}
+
+
