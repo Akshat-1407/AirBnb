@@ -1,13 +1,21 @@
+
+if (process.env.NODE_ENV != "production") {
+  require("dotenv").config();
+}
+
 const mongoose = require("mongoose");
 const Listing = require("../models/listing.js");
 const Review = require("../models/review.js");
 const User = require("../models/user.js");
 const { faker } = require('@faker-js/faker');
 
-const MONGO_URL = "mongodb://127.0.0.1:27017/wanderlust";
+// const MONGO_URL = "mongodb://127.0.0.1:27017/wanderlust";
+
+const Url = process.env.ATLASDB_URL;
+console.log(Url);
 
 async function main() {
-  await mongoose.connect(MONGO_URL);
+  await mongoose.connect(Url);
   console.log("Connected to DB...");
 }
 
